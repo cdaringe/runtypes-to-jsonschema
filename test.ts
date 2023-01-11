@@ -6,6 +6,12 @@ import { validate } from "jsonschema";
 const tjs = tojsonschema;
 
 test("basic", (t) => {
+  // readme example - start
+  // const myRtSchema = rt.Record({ foo: rt.Literal("bar") });
+  // const myjsonschema = tojsonschema(myRtSchema);
+  // console.log(JSON.stringify(myjsonschema));
+  // const out = { type: "object", properties: { foo: { const: "bar" } } };
+  // readme example - end
   t.deepEqual(tjs(rt.Literal("foo")), { const: "foo" });
   t.deepEqual(tjs(rt.Union(rt.Literal("foo"), rt.Literal("bar"))), {
     anyOf: [{ const: "foo" }, { const: "bar" }],
