@@ -8,8 +8,12 @@
     "index.d.ts"
   ],
   "scripts": {
-    "test": "ava",
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint '**/*.{ts,js}'",
+    "prepare": "husky install",
+    "semantic-release": "semantic-release",
+    "test": "c8 -r=lcov -r=text-summary ava"
   },
   "keywords": [
     "jsonschema",
@@ -22,10 +26,20 @@
   "author": "cdaringe",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.4.1",
+    "@commitlint/config-conventional": "^17.4.0",
     "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "ava": "5.1.0",
+    "c8": "^7.12.0",
+    "eslint": "^8.31.0",
+    "husky": "^8.0.3",
     "jsonschema": "1.4.1",
+    "prettier": "^2.8.2",
+    "prettier-plugin-organize-imports": "^3.2.1",
     "runtypes": "^6.6.0",
+    "semantic-release": "^20.0.2",
     "ts-node": "10.9.1",
     "typescript": "4.9.4"
   },

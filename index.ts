@@ -5,9 +5,7 @@ const nev = (x: never) => {
   throw new Error(`unhandled case: ${x}`);
 };
 
-const v = rt.String.withConstraint((x) => "");
-
-export const tojsonschema = <T extends rt.Runtype<any>>(
+export const tojsonschema = <T extends rt.Runtype>(
   rtschema: T,
   subjsonschema: Schema = {},
   options?: { loose?: boolean }
@@ -48,7 +46,7 @@ export const tojsonschema = <T extends rt.Runtype<any>>(
     case "constraint":
       // https://github.com/pelotom/runtypes/issues/319
       return tojsonschema(
-        (rtschema as unknown as { underlying: rt.Runtype<any> }).underlying,
+        (rtschema as unknown as { underlying: rt.Runtype }).underlying,
         js,
         options
       );
@@ -65,8 +63,6 @@ export const tojsonschema = <T extends rt.Runtype<any>>(
     case "literal":
       js.const = reflect.value;
       return js;
-    case "number":
-      js.type = "number";
       return js;
     case "optional":
       // everything is optional in jsonschema, until _required_ fields are set

@@ -23,7 +23,7 @@ test("complex", (t) => {
     rt.Record({
       testBool: rt.Boolean,
       testNull: rt.Null,
-      foo: rt.Dictionary(rt.Number.withConstraint((_) => true)),
+      foo: rt.Dictionary(rt.Number.withConstraint(() => true)),
       arrayField: rt.Array(
         rt.Partial({
           partialField1: rt.String,
@@ -81,6 +81,6 @@ test("complex", (t) => {
     const result = validate(checkedDemoData, actualJsonSchema);
     t.is(result.valid, true);
   } catch (err) {
-    t.fail(String((err as any)?.details || err));
+    t.fail(String((err as { details?: unknown })?.details || err));
   }
 });
