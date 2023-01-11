@@ -58,5 +58,10 @@
     "require": [
       "ts-node/register"
     ]
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
   }
 }
