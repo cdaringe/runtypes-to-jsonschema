@@ -1,6 +1,6 @@
 {
   "name": "runtypes-to-jsonschema",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-release",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdaringe/runtypes-to-jsonschema.git"
