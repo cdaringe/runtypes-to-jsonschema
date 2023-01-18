@@ -1,6 +1,19 @@
 import type { Schema } from "jsonschema";
 import * as rt from "runtypes";
 
+/**
+ * @warning unofficial feature
+ * support rtSchema.meta to generate jsonschema values
+ * if this works... document it or add a RT feature request
+ */
+declare module "runtypes" {
+  interface Runtype<A = unknown> {
+    meta?: {
+      description?: string;
+    };
+  }
+}
+
 const nev = (x: never) => {
   throw new Error(`unhandled case: ${x}`);
 };
@@ -12,6 +25,10 @@ export const tojsonschema = <T extends rt.Runtype>(
 ): Schema => {
   const { loose: isLooseMode } = options || {};
   const js = subjsonschema;
+  const description = rtschema.meta?.description;
+  if (description) {
+    js.description = description;
+  }
   const reflect = rtschema.reflect;
   switch (reflect.tag) {
     case "array":
@@ -62,7 +79,6 @@ export const tojsonschema = <T extends rt.Runtype>(
       return js;
     case "literal":
       js.const = reflect.value;
-      return js;
       return js;
     case "optional":
       // everything is optional in jsonschema, until _required_ fields are set

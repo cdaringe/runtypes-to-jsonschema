@@ -12,7 +12,9 @@ test("basic", (t) => {
   // console.log(JSON.stringify(myjsonschema));
   // const out = { type: "object", properties: { foo: { const: "bar" } } };
   // readme example - end
-  t.deepEqual(tjs(rt.Literal("foo")), { const: "foo" });
+  const fooSchema = rt.Literal("foo");
+  fooSchema.meta = { description: "foo_description" };
+  t.deepEqual(tjs(fooSchema), { description: "foo_description", const: "foo" });
   t.deepEqual(tjs(rt.Union(rt.Literal("foo"), rt.Literal("bar"))), {
     anyOf: [{ const: "foo" }, { const: "bar" }],
   });
