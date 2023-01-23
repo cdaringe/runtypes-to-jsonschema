@@ -10,6 +10,7 @@ declare module "runtypes" {
   interface Runtype<A = unknown> {
     meta?: {
       description?: string;
+      defaultValue?: unknown;
     };
   }
 }
@@ -25,9 +26,13 @@ export const tojsonschema = <T extends rt.Runtype>(
 ): Schema => {
   const { loose: isLooseMode } = options || {};
   const js = subjsonschema;
-  const description = rtschema.meta?.description;
+  const { description, defaultValue } = rtschema.meta || {};
   if (description) {
     js.description = description;
+  }
+  if (defaultValue != undefined) {
+    // https://json-schema.org/understanding-json-schema/reference/generic.html?highlight=default
+    (js as { default?: unknown }).default = defaultValue;
   }
   const reflect = rtschema.reflect;
   switch (reflect.tag) {

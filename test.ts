@@ -13,8 +13,12 @@ test("basic", (t) => {
   // const out = { type: "object", properties: { foo: { const: "bar" } } };
   // readme example - end
   const fooSchema = rt.Literal("foo");
-  fooSchema.meta = { description: "foo_description" };
-  t.deepEqual(tjs(fooSchema), { description: "foo_description", const: "foo" });
+  fooSchema.meta = { description: "foo_description", defaultValue: "__FOO__" };
+  t.deepEqual(tjs(fooSchema), {
+    description: "foo_description",
+    const: "foo",
+    default: "__FOO__",
+  });
   t.deepEqual(tjs(rt.Union(rt.Literal("foo"), rt.Literal("bar"))), {
     anyOf: [{ const: "foo" }, { const: "bar" }],
   });
