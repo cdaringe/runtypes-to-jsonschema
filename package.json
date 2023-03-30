@@ -45,7 +45,7 @@
     "runtypes": "^6.6.0",
     "semantic-release": "^20.0.2",
     "ts-node": "10.9.1",
-    "typescript": "5.0.2"
+    "typescript": "5.0.3"
   },
   "peerDependencies": {
     "jsonschema": "^1",
