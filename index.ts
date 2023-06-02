@@ -22,7 +22,8 @@ const nev = (x: never) => {
 export const tojsonschema = <T extends rt.Runtype>(
   rtschema: T,
   subjsonschema: Schema = {},
-  options?: { loose?: boolean }
+  options?: { loose?: boolean },
+  markasoptional?: () => void
 ): Schema => {
   const { loose: isLooseMode } = options || {};
   const js = subjsonschema;
@@ -64,18 +65,21 @@ export const tojsonschema = <T extends rt.Runtype>(
       js.type = "boolean";
       return js;
     case "brand":
-      return tojsonschema(reflect.entity, js, options);
+      return tojsonschema(reflect.entity, js, options, markasoptional);
     case "constraint":
       // https://github.com/pelotom/runtypes/issues/319
       return tojsonschema(
         (rtschema as unknown as { underlying: rt.Runtype }).underlying,
         js,
-        options
+        options,
+        markasoptional
       );
     case "dictionary":
       // https://json-schema.org/understanding-json-schema/reference/object.html#id5
       js.type = "object";
-      js.properties = { builtin: tojsonschema(reflect.value, {}, options) };
+      js.properties = {
+        builtin: tojsonschema(reflect.value, {}, options),
+      };
       return js;
     case "intersect":
       // @todo - this could be tricky. go easy mode for 1st pass
@@ -86,17 +90,25 @@ export const tojsonschema = <T extends rt.Runtype>(
       js.const = reflect.value;
       return js;
     case "optional":
-      // everything is optional in jsonschema, until _required_ fields are set
+      markasoptional && markasoptional();
+      js.type = reflect.underlying.tag;
       return js;
-    case "record":
+    case "record": {
       js.type = "object";
+      const required = Object.keys(reflect.fields);
       js.properties = Object.entries(reflect.fields).reduce<
         NonNullable<Schema["properties"]>
       >((props, [k, v]) => {
-        props[k] = tojsonschema(v, {}, options);
+        props[k] = tojsonschema(v, {}, options, () => {
+          required.splice(required.indexOf(k), 1);
+        });
         return props;
       }, {});
+      if (required.length !== 0 && !reflect.isPartial) {
+        js.required = required;
+      }
       return js;
+    }
     case "string":
       js.type = "string";
       return js;

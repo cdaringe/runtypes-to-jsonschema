@@ -1,7 +1,7 @@
 import test from "ava";
-import { tojsonschema } from "./";
-import * as rt from "runtypes";
 import { validate } from "jsonschema";
+import * as rt from "runtypes";
+import { tojsonschema } from "./";
 
 const tjs = tojsonschema;
 
@@ -29,6 +29,8 @@ test("complex", (t) => {
     rt.Record({
       testBool: rt.Boolean,
       testNull: rt.Null,
+      optionalString: rt.String.optional(),
+      optionalNumber: rt.Number.optional(),
       foo: rt.Dictionary(rt.Number.withConstraint(() => true)),
       arrayField: rt.Array(
         rt.Partial({
@@ -49,15 +51,26 @@ test("complex", (t) => {
         properties: {
           testBool: { type: "boolean" },
           testNull: { const: null },
+          optionalString: {
+            type: "string",
+          },
+          optionalNumber: {
+            type: "number",
+          },
           foo: { type: "object", properties: { builtin: { type: "number" } } },
           arrayField: {
             type: "array",
             items: {
               type: "object",
-              properties: { partialField1: { type: "string" } },
+              properties: {
+                partialField1: {
+                  type: "string",
+                },
+              },
             },
           },
         },
+        required: ["testBool", "testNull", "foo", "arrayField"],
       },
       {
         type: "object",
@@ -65,6 +78,7 @@ test("complex", (t) => {
           testBigInt: { type: "integer" },
           testBrand: { const: "test-branded-literal" },
         },
+        required: ["testBigInt", "testBrand"],
       },
     ],
   };
@@ -79,7 +93,6 @@ test("complex", (t) => {
       {
         partialField1: "ok",
       },
-      {},
     ],
   };
   try {
