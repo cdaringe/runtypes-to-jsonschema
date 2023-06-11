@@ -27,14 +27,14 @@ test("basic", (t) => {
 test("complex", (t) => {
   const rtSchema = rt.Union(
     rt.Record({
-      testBool: rt.Boolean,
-      testNull: rt.Null,
-      foo: rt.Dictionary(rt.Number.withConstraint(() => true)),
       arrayField: rt.Array(
         rt.Partial({
           partialField1: rt.String,
         })
       ),
+      foo: rt.Dictionary(rt.Number.withConstraint(() => true)),
+      testBool: rt.Boolean,
+      testNull: rt.Null,
     }),
     rt.Record({
       testBigInt: rt.BigInt,
@@ -47,9 +47,6 @@ test("complex", (t) => {
       {
         type: "object",
         properties: {
-          testBool: { type: "boolean" },
-          testNull: { const: null },
-          foo: { type: "object", properties: { builtin: { type: "number" } } },
           arrayField: {
             type: "array",
             items: {
@@ -57,7 +54,11 @@ test("complex", (t) => {
               properties: { partialField1: { type: "string" } },
             },
           },
+          foo: { type: "object", properties: { builtin: { type: "number" } } },
+          testBool: { type: "boolean" },
+          testNull: { const: null },
         },
+        required: ["arrayField", "foo", "testBool", "testNull"],
       },
       {
         type: "object",
@@ -65,10 +66,12 @@ test("complex", (t) => {
           testBigInt: { type: "integer" },
           testBrand: { const: "test-branded-literal" },
         },
+        required: ["testBigInt", "testBrand"],
       },
     ],
   };
   t.deepEqual(actualJsonSchema, expected);
+
   const demoData: rt.Static<typeof rtSchema> = {
     testBool: true,
     testNull: null,
@@ -89,4 +92,29 @@ test("complex", (t) => {
   } catch (err) {
     t.fail(String((err as { details?: unknown })?.details || err));
   }
+});
+
+test("optional", (t) => {
+  const rtSchema = rt.Record({
+    bar: rt.Number,
+    baz: rt.String.withConstraint(() => true).optional(),
+    foo: rt.Boolean.optional().withGuard((_v): _v is boolean => true),
+  });
+  const actualJsonSchema = tjs(rtSchema);
+  const expected = {
+    properties: {
+      bar: {
+        type: "number",
+      },
+      baz: {
+        type: "string",
+      },
+      foo: {
+        type: "boolean",
+      },
+    },
+    required: ["bar"],
+    type: "object",
+  };
+  t.deepEqual(actualJsonSchema, expected);
 });

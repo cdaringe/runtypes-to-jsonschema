@@ -86,13 +86,25 @@ export const tojsonschema = <T extends rt.Runtype>(
       js.const = reflect.value;
       return js;
     case "optional":
-      // everything is optional in jsonschema, until _required_ fields are set
-      return js;
+      return tojsonschema(reflect.underlying, {}, options);
     case "record":
       js.type = "object";
       js.properties = Object.entries(reflect.fields).reduce<
         NonNullable<Schema["properties"]>
       >((props, [k, v]) => {
+        let isRequired = reflect.isPartial ? false : true;
+        let underlying: rt.Reflect | null = v;
+        do {
+          if (underlying?.tag === "optional") {
+            isRequired = false;
+            break;
+          }
+          underlying =
+            "underlying" in underlying ? underlying.underlying : null;
+        } while (underlying);
+        if (isRequired) {
+          js.required = [...((js.required as string[]) || []), k];
+        }
         props[k] = tojsonschema(v, {}, options);
         return props;
       }, {});
