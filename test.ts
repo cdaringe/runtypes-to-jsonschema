@@ -118,3 +118,16 @@ test("optional", (t) => {
   };
   t.deepEqual(actualJsonSchema, expected);
 });
+
+test("readme demo", (t) => {
+  const myRtSchema = rt.Record({ foo: rt.Literal("bar") });
+  const myjsonschema = tojsonschema(myRtSchema);
+  t.deepEqual(
+    {
+      type: "object",
+      properties: { foo: { const: "bar" } },
+      required: ["foo"],
+    },
+    myjsonschema
+  );
+});

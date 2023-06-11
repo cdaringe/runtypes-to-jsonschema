@@ -16,7 +16,11 @@ import * as rt from "runtypes";
 
 const myRtSchema = rt.Record({ foo: rt.Literal("bar") });
 const myjsonschema = tojsonschema(myRtSchema);
-// { type: "object", properties: { foo: { const: "bar" } } }
+// {
+//   type: "object",
+//   properties: { foo: { const: "bar" } },
+//   required: ["foo"],
+// }
 ```
 
 see [test.ts](./test.ts) for more.
