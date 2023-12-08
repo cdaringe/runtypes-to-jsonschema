@@ -44,7 +44,7 @@
     "prettier-plugin-organize-imports": "^3.2.1",
     "runtypes": "^6.6.0",
     "semantic-release": "^21.0.0",
-    "ts-node": "10.9.1",
+    "ts-node": "10.9.2",
     "typescript": "5.3.3"
   },
   "peerDependencies": {
