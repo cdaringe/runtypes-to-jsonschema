@@ -40,7 +40,7 @@ devDependencies:
     version: 3.0.0
   prettier-plugin-organize-imports:
     specifier: ^3.2.1
-    version: 3.2.1(prettier@3.0.0)(typescript@5.3.3)
+    version: 3.2.4(prettier@3.0.0)(typescript@5.3.3)
   runtypes:
     specifier: ^6.6.0
     version: 6.6.0
@@ -3235,8 +3235,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-organize-imports@3.2.1(prettier@3.0.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-bty7C2Ecard5EOXirtzeCAqj4FU4epeuWrQt/Z+sh8UVEpBlBZ3m3KNPz2kFu7KgRTQx/C9o4/TdquPD1jOqjQ==}
+  /prettier-plugin-organize-imports@3.2.4(prettier@3.0.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-6m8WBhIp0dfwu0SkgfOxJqh+HpdyfqSSLfKKRZSFbDuEQXDDndb8fTpRWkUrX/uBenkex3MgnVk0J3b3Y5byog==}
     peerDependencies:
       '@volar/vue-language-plugin-pug': ^1.0.4
       '@volar/vue-typescript': ^1.0.4
