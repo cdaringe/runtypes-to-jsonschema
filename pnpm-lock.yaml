@@ -43,7 +43,7 @@ devDependencies:
     version: 3.2.4(prettier@3.2.5)(typescript@5.3.3)
   runtypes:
     specifier: ^6.6.0
-    version: 6.6.0
+    version: 6.7.0
   semantic-release:
     specifier: ^21.0.0
     version: 21.0.0
@@ -3458,8 +3458,8 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
-  /runtypes@6.6.0:
-    resolution: {integrity: sha512-ddM7sgB3fyboDlBzEYFQ04L674sKjbs4GyW2W32N/5Ae47NRd/GyMASPC2PFw8drPHYGEcZ0mZ26r5RcB8msfQ==}
+  /runtypes@6.7.0:
+    resolution: {integrity: sha512-3TLdfFX8YHNFOhwHrSJza6uxVBmBrEjnNQlNXvXCdItS0Pdskfg5vVXUTWIN+Y23QR09jWpSl99UHkA83m4uWA==}
     dev: true
 
   /safe-buffer@5.1.2:
