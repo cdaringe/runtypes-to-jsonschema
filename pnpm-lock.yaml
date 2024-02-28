@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^7.0.0
     version: 7.1.0(eslint@8.57.0)(typescript@5.3.3)
   ava:
-    specifier: 6.1.1
-    version: 6.1.1
+    specifier: 6.1.2
+    version: 6.1.2
   c8:
     specifier: ^9.0.0
     version: 9.1.0
@@ -605,11 +605,6 @@ packages:
       - supports-color
     dev: true
 
-  /@sindresorhus/merge-streams@1.0.0:
-    resolution: {integrity: sha512-rUV5WyJrJLoloD4NDN1V1+LDMDWOa4OTsT4yYJwQNpTU6FWxkxHpL7eu4w+DmiH8x/EAM1otkPE1+LaspIbplw==}
-    engines: {node: '>=18'}
-    dev: true
-
   /@sindresorhus/merge-streams@2.3.0:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
@@ -806,7 +801,7 @@ packages:
       bindings: 1.5.0
       estree-walker: 2.0.2
       glob: 7.2.3
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       micromatch: 4.0.5
       node-gyp-build: 4.7.1
       resolve-from: 5.0.0
@@ -1012,8 +1007,8 @@ packages:
     resolution: {integrity: sha512-tLRNUXati5MFePdAk8dw7Qt7DpxPB60ofAgn8WRhW6a2rcimZnYBP9oxHiv0OHy+Wz7kPMG+t4LGdt31+4EmGg==}
     dev: true
 
-  /ava@6.1.1:
-    resolution: {integrity: sha512-A+DG0Ag0e5zvt262Ze0pG5QH7EBmhn+DB9uK7WkUtJVAtGjZFeKTpUOKx339DMGn53+FB24pCJC5klX2WU4VOw==}
+  /ava@6.1.2:
+    resolution: {integrity: sha512-WcpxJ8yZ7mk9ABTinD0IAjcemovSeVGjuuwZx0JS9johREWFeLTl8UP6wd7l6nmnrWqkKZdwaD71a/ocH4qPKw==}
     engines: {node: ^18.18 || ^20.8 || ^21}
     hasBin: true
     peerDependencies:
@@ -1042,7 +1037,7 @@ packages:
       debug: 4.3.4
       emittery: 1.0.1
       figures: 6.0.1
-      globby: 14.0.0
+      globby: 14.0.1
       ignore-by-default: 2.1.0
       indent-string: 5.0.0
       is-plain-object: 5.0.0
@@ -2008,18 +2003,6 @@ packages:
       ignore: 5.3.1
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /globby@14.0.0:
-    resolution: {integrity: sha512-/1WM/LNHRAOH9lZta77uGbq0dAEQM+XjNesWwhlERDVenqothRbnzTrL3/LrIoEPPjeUHC3vrS6TwoyxeHs7MQ==}
-    engines: {node: '>=18'}
-    dependencies:
-      '@sindresorhus/merge-streams': 1.0.0
-      fast-glob: 3.3.2
-      ignore: 5.3.1
-      path-type: 5.0.0
-      slash: 5.1.0
-      unicorn-magic: 0.1.0
     dev: true
 
   /globby@14.0.1:
