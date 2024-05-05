@@ -24,8 +24,8 @@ importers:
         specifier: ^7.0.0
         version: 7.8.0(eslint@9.2.0)(typescript@5.4.5)
       ava:
-        specifier: 6.1.2
-        version: 6.1.2
+        specifier: 6.1.3
+        version: 6.1.3
       c8:
         specifier: ^9.0.0
         version: 9.1.0
@@ -534,9 +534,9 @@ packages:
   async-sema@3.1.1:
     resolution: {integrity: sha512-tLRNUXati5MFePdAk8dw7Qt7DpxPB60ofAgn8WRhW6a2rcimZnYBP9oxHiv0OHy+Wz7kPMG+t4LGdt31+4EmGg==}
 
-  ava@6.1.2:
-    resolution: {integrity: sha512-WcpxJ8yZ7mk9ABTinD0IAjcemovSeVGjuuwZx0JS9johREWFeLTl8UP6wd7l6nmnrWqkKZdwaD71a/ocH4qPKw==}
-    engines: {node: ^18.18 || ^20.8 || ^21}
+  ava@6.1.3:
+    resolution: {integrity: sha512-tkKbpF1pIiC+q09wNU9OfyTDYZa8yuWvU2up3+lFJ3lr1RmnYh2GBpPwzYUEB0wvTPIUysGjcZLNZr7STDviRA==}
+    engines: {node: ^18.18 || ^20.8 || ^21 || ^22}
     hasBin: true
     peerDependencies:
       '@ava/typescript': '*'
@@ -2960,7 +2960,7 @@ snapshots:
 
   async-sema@3.1.1: {}
 
-  ava@6.1.2:
+  ava@6.1.3:
     dependencies:
       '@vercel/nft': 0.26.2
       acorn: 8.11.3
