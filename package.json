@@ -43,7 +43,7 @@
     "prettier": "^3.0.0",
     "prettier-plugin-organize-imports": "^4.0.0",
     "runtypes": "^6.6.0",
-    "semantic-release": "^21.0.0",
+    "semantic-release": "^24.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"
   },
